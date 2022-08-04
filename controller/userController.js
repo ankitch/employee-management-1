@@ -27,7 +27,13 @@ const postUser = (req, res, next) => {
   ];
   res.status(201).json([...users, req.body]);
 };
+
+const deleteUser = (req, res, next) => {
+  res.status(200).json({ message: "deleted" });
+};
+
 module.exports = {
   getUsers,
   postUser,
+  deleteUser,
 };
