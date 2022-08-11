@@ -1,32 +1,16 @@
-const getUsers = (req, res, next) => {
-  const users = [
-    {
-      name: "ankit",
-      company: "innovate",
-    },
-    {
-      name: "bishal",
-      company: "islington",
-    },
-  ];
-  res.status(200).json(users);
+const UserModel = require("../models/user");
+
+const getUsers = async (req, res, next) => {
+  const user = await UserModel.find();
+  res.status(200).json(user);
 };
 
-const postUser = (req, res, next) => {
-  console.log(req.body);
-  //write
-  const users = [
-    {
-      name: "ankit",
-      company: "innovate",
-    },
-    {
-      name: "bishal",
-      company: "islington",
-    },
-  ];
-  res.status(201).json([...users, req.body]);
+const postUser = async (req, res, next) => {
+  const userModel = new UserModel({ ...req.body });
+  const userData = await userModel.save();
+  res.status(201).json(userData);
 };
+
 module.exports = {
   getUsers,
   postUser,

@@ -3,11 +3,24 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-
+const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
 const app = express();
+
+const DB_URL =
+  "mongodb+srv://ankitch:LsplpiN1TqSObFjx@cluster0.l2vk1t8.mongodb.net/employee-management";
+
+const connectToDatabase = async () => {
+  try {
+    const connection = await mongoose.connect(DB_URL);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+connectToDatabase();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
