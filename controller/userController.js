@@ -27,6 +27,9 @@ const postUser = (req, res, next) => {
   ];
   res.status(201).json([...users, req.body]);
 };
+
+const deleteUser = async (sasdsadsa) => {};
+
 module.exports = {
   getUsers,
   postUser,
