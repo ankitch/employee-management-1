@@ -6,11 +6,15 @@ const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const mongoose = require("mongoose");
 
 const app = express();
 
-// view engine setup
+require("dotenv").config();
+
+// remove this after you've confirmed it working
 app.set("views", path.join(__dirname, "views"));
+// view engine setup
 app.set("view engine", "ejs");
 
 app.use(logger("dev"));
@@ -27,6 +31,16 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+// const connectionString = process.env.MONGO_DB_CONNECTION;
+// const connectToDatabase = async () => {
+//   try {
+//     const connection = await mongoose.connect(connectionString);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+// connectToDatabase();
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
